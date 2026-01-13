@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BuildForge</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="bgGlow"></div>
+
+  <nav class="nav">
+    <div class="navInner">
+      <div class="brand">
+        <div class="logo"></div>
+        <div>
+          <div class="brandName">BuildForge</div>
+          <div class="brandTag">Swap planner • parts + notes • export</div>
+        </div>
+      </div>
+
+      <div class="navActions">
+        <button class="btn ghost" id="printBtn" title="Print / Save as PDF">Export PDF</button>
+        <a class="btn" id="resetBtn" href="#" title="Reset selections">Reset</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <header class="hero">
+      <div class="heroLeft">
+        <h1>LS Swap Generator</h1>
+        <p class="subtitle">
+          Pick a chassis + engine + trans and get a clean build sheet with fitment notes, wiring/ECU guidance, and supporting systems.
+        </p>
+        <div class="badges">
+          <span class="badge">Color-coded sections</span>
+          <span class="badge">Searchable library</span>
+          <span class="badge">One-click PDF export</span>
+        </div>
+      </div>
+
+      <div class="heroRight">
+        <div class="statCard">
+          <div class="statTop">
+            <div class="dot"></div>
+            <div class="statTitle">Status</div>
+          </div>
+          <div class="statValue" id="statusText">Ready</div>
+          <div class="statHint">Dropdowns populate from a local database.</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="grid">
+      <!-- Builder -->
+      <section class="card">
+        <div class="cardHeader">
+          <div class="chip">BUILDER</div>
+          <div class="cardTitle">Build Inputs</div>
+        </div>
+
+        <div class="formGrid">
+          <div class="field">
+            <label for="car">Chassis</label>
+            <select id="car"></select>
+          </div>
+
+          <div class="field">
+            <label for="engine">Engine</label>
+            <select id="engine"></select>
+          </div>
+
+          <div class="field">
+            <label for="trans">Transmission</label>
+            <select id="trans"></select>
+          </div>
+
+          <div class="field">
+            <label for="use">Use Case</label>
+            <select id="use">
+              <option value="street">Street / Daily</option>
+              <option value="offroad">Offroad</option>
+              <option value="track">Track / Drag</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="actionsRow">
+          <button class="btn primary" id="genBtn">Generate Swap Plan</button>
+          <button class="btn ghost" id="copyBtn">Copy Build Sheet</button>
+        </div>
+
+        <div id="output" class="output" style="display:none;"></div>
+      </section>
+
+      <!-- Library -->
+      <section class="card">
+        <div class="cardHeader">
+          <div class="chip alt">LIBRARY</div>
+          <div class="cardTitle">Build Library</div>
+        </div>
+
+        <div class="libraryTop">
+          <input id="search" class="search" placeholder="Search presets (e.g., 4Runner, 6.0, 4L80E)..." />
+        </div>
+
+        <div id="presetList" class="presetList"></div>
+
+        <div class="hint">
+          Tip: Click a preset to auto-fill the builder.
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
+<div class="divider"></div>
+
+<div class="cardTitle" style="margin-top:10px;">Pricing</div>
+<div class="formGrid">
+  <div class="field">
+    <label for="laborRate">Labor rate ($/hr)</label>
+    <input id="laborRate" class="search" type="number" value="120" min="0" step="1">
+  </div>
+
+  <div class="field">
+    <label for="laborHours">Labor hours (estimate)</label>
+    <input id="laborHours" class="search" type="number" value="40" min="0" step="1">
+  </div>
+
+  <div class="field">
+    <label for="engineCost">Engine cost ($)</label>
+    <input id="engineCost" class="search" type="number" value="2500" min="0" step="1">
+  </div>
+
+  <div class="field">
+    <label for="transCost">Trans cost ($)</label>
+    <input id="transCost" class="search" type="number" value="1000" min="0" step="1">
+  </div>
+
+  <div class="field">
+    <label for="partsBudget">Other parts budget ($)</label>
+    <input id="partsBudget" class="search" type="number" value="2500" min="0" step="1">
+  </div>
+
+  <div class="field">
+    <label for="contingency">Contingency (%)</label>
+    <input id="contingency" class="search" type="number" value="10" min="0" step="1">
+  </div>
+</div>
